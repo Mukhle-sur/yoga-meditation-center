@@ -2,12 +2,31 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { AiOutlineEye } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 const Login = () => {
-  const { user, loading, setLoading, signIn, signInWithGoogle, resetPassword } =
+  const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
     useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  // signIn With email and password
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    signIn(email, password)
+      .then((result) => {
+        toast.success("SignUp Successful");
+        console.log(result.user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
+      });
+  };
 
   // googleLogin
   const handleGoogleLogin = () => {
@@ -16,6 +35,7 @@ const Login = () => {
         const loginUser = result.user;
         console.log(loginUser);
         toast.success("Login SuccessFully");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(error.message);
@@ -32,6 +52,21 @@ const Login = () => {
       passwordInput.type = "password";
     }
   };
+
+  // reset password
+  const handleReset = (event) => {
+    const email = event.target.email.value;
+    resetPassword(email)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Please Check Your Email to Reset You password");
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
+      });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen pt-24">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -42,6 +77,7 @@ const Login = () => {
           </p>
         </div>
         <form
+          onSubmit={handleSubmit}
           noValidate=""
           action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -101,7 +137,7 @@ const Login = () => {
           </div>
         </form>
         <div className="space-y-1">
-          <button className="text-xs hover:underline hover:text-rose-500 text-gray-400">
+          <button onClick={handleReset} className="text-xs hover:underline hover:text-rose-500 text-gray-400">
             Forgot password?
           </button>
         </div>

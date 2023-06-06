@@ -4,28 +4,46 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import logo from "../../../assets/images/yogalogo.png";
 import avatarImg from "../../../assets/images/placeholder.jpg";
+import { toast } from "react-hot-toast";
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("LogOut Successful");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   const navItems = (
     <>
       <li>
-        <Link className="text-lg font-medium" to="/">Home</Link>
+        <Link className="text-lg font-medium" to="/">
+          Home
+        </Link>
       </li>
       <li>
-        <Link className="text-lg font-medium" to="/allToys">Instructors</Link>
+        <Link className="text-lg font-medium" to="/allToys">
+          Instructors
+        </Link>
       </li>
       <li>
-        <Link className="text-lg font-medium" to="/blog">Classes</Link>
+        <Link className="text-lg font-medium" to="/blog">
+          Classes
+        </Link>
       </li>
       {user && (
         <li>
-          <Link className="text-lg font-medium" to="/blog">Dashboard </Link>
+          <Link className="text-lg font-medium" to="/blog">
+            Dashboard{" "}
+          </Link>
         </li>
       )}
     </>
   );
   return (
-    <div className="fixed w-full bg-white z-10 shadow-sm ">
+    <div className="fixed top-0 w-full bg-white z-10 shadow-sm ">
       <div className="py-3 border-[1px]">
         <Container>
           <div className="navbar bg-stone-400-100">
@@ -55,8 +73,10 @@ const Navbar = () => {
                 </ul>
               </div>
               <div className="flex items-center">
-              <img src={logo} alt="" className="w-12" />
-              <h4 className="uppercase text-3xl ml-2">Yoga <span className="text-rose-500">Center</span></h4>
+                <img src={logo} alt="" className="w-12" />
+                <h4 className="uppercase text-3xl ml-2">
+                  Yoga <span className="text-rose-500">Center</span>
+                </h4>
               </div>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -67,10 +87,18 @@ const Navbar = () => {
             <div className="navbar-end">
               {user ? (
                 <>
-                  <button className="btn btn-neutral text-white">Log out</button>
+                  <button
+                    onClick={handleLogOut}
+                    className="btn btn-outline btn-primary"
+                  >
+                    Log out
+                  </button>
                 </>
               ) : (
-                <Link to="/login" className="btn  btn-outline">
+                <Link
+                  to="/login"
+                  className="btn btn-outline btn-primary bg-opacity-50 text-opacity-100"
+                >
                   Login
                 </Link>
               )}
