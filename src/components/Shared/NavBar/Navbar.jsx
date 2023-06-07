@@ -7,6 +7,8 @@ import avatarImg from "../../../assets/images/placeholder.jpg";
 import { toast } from "react-hot-toast";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  // user  logOut
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -105,7 +107,7 @@ const Navbar = () => {
               <div className="avatar ml-5">
                 <div className="w-12 rounded-full ring ring-primary  ring-offset-base-100 ring-offset-2">
                   <img
-                    src={user ? user?.photoURL : avatarImg}
+                   src={user && user?.photoURL ? user?.photoURL : avatarImg}
                     title={user?.displayName}
                     className="cursor-pointer"
                   />

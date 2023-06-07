@@ -157,7 +157,7 @@ const Login = () => {
           <p>Continue with Google</p>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
-          Don't have an account yet?
+          Do not have an account yet?
           <Link
             to="/signUp"
             className="hover:underline hover:text-rose-500 text-gray-600"

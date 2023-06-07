@@ -1,0 +1,11 @@
+/* styles.css */
+.home-page.light {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .home-page.dark {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
