@@ -20,6 +20,7 @@ const SignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+//   use react hook form 
   const {
     register,
     handleSubmit,
@@ -28,6 +29,7 @@ const SignUp = () => {
   } = useForm();
 
   const password = watch("password", "");
+  
   const onSubmit = (data) => {
     console.log(data);
 

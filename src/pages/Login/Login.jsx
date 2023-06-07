@@ -5,18 +5,22 @@ import { AiOutlineEye } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
+import { useForm } from "react-hook-form";
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
     useContext(AuthContext);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   // signIn With email and password
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    signIn(email, password)
+  const onSubmit = (data) => {
+    signIn(data.email, data.password)
       .then((result) => {
         toast.success("SignUp Successful");
         console.log(result.user);
@@ -77,7 +81,7 @@ const Login = () => {
           </p>
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           noValidate=""
           action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -90,12 +94,15 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
+                {...register("email", { required: true })}
                 id="email"
-                required
                 placeholder="Enter Your Email Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
+              {errors.email?.type === "required" && (
+                <p className="text-red-600">Email is required</p>
+              )}
             </div>
             <div>
               <div className="flex justify-between">
@@ -107,11 +114,15 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  {...register("password", { required: true })}
                   id="password"
                   required
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900 "
                 />
+                {errors.email?.type === "required" && (
+                  <p className="text-red-600">Password is required</p>
+                )}
                 <AiOutlineEye
                   onClick={handleSeePass}
                   className="absolute top-3 right-3 cursor-pointer text-lg"
@@ -131,13 +142,16 @@ const Login = () => {
                   size={24}
                 ></TbFidgetSpinner>
               ) : (
-                "Continue"
+                "Login"
               )}
             </button>
           </div>
         </form>
         <div className="space-y-1">
-          <button onClick={handleReset} className="text-xs hover:underline hover:text-rose-500 text-gray-400">
+          <button
+            onClick={handleReset}
+            className="text-xs hover:underline hover:text-rose-500 text-gray-400"
+          >
             Forgot password?
           </button>
         </div>

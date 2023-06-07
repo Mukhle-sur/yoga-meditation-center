@@ -27,29 +27,29 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="text-lg font-medium" to="/allToys">
+        <Link className="text-lg font-medium" to="/allInstructors">
           Instructors
         </Link>
       </li>
       <li>
-        <Link className="text-lg font-medium" to="/blog">
+        <Link className="text-lg font-medium" to="/allClasses">
           Classes
         </Link>
       </li>
       {user && (
         <li>
-          <Link className="text-lg font-medium" to="/blog">
-            Dashboard{" "}
+          <Link className="text-lg font-medium" to="/dashboard">
+            Dashboard
           </Link>
         </li>
       )}
     </>
   );
   return (
-    <div className="fixed bg-opacity-30 w-full z-10 shadow-sm ">
+    <div className="fixed top-0 bg-opacity-30 w-full z-10 shadow-sm bg-sky-950">
       <div className="py-3">
         <Container>
-          <div className="navbar bg-stone-400-100 text-white">
+          <div className="navbar  text-white ">
             <div className="navbar-start">
               <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={handleLogOut}
-                    className="btn btn-outline text-white btn-primary"
+                    className="btn change btn-outline text-white btn-primary"
                   >
                     Log out
                   </button>
@@ -101,7 +101,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/login"
-                  className="btn btn-outline btn-primary border-white text-red-500"
+                  className="change btn btn-outline btn-primary border-white "
                 >
                   Login
                 </Link>
