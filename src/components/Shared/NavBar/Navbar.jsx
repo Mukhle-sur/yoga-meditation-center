@@ -45,10 +45,10 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="fixed top-0 w-full bg-white z-10 shadow-sm ">
-      <div className="py-3 border-[1px]">
+    <div className="fixed bg-opacity-30 w-full bg-white z-10 shadow-sm ">
+      <div className="py-3">
         <Container>
-          <div className="navbar bg-stone-400-100">
+          <div className="navbar bg-stone-400-100 text-white">
             <div className="navbar-start">
               <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -99,7 +99,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/login"
-                  className="btn btn-outline btn-primary bg-opacity-50 text-opacity-100"
+                  className="btn btn-outline btn-primary bg-opacity-50 text-white"
                 >
                   Login
                 </Link>
