@@ -5,6 +5,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import logo from "../../../assets/images/yogalogo.png";
 import avatarImg from "../../../assets/images/placeholder.jpg";
 import { toast } from "react-hot-toast";
+import ThemChange from "./ThemChange";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
@@ -45,7 +46,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="fixed bg-opacity-30 w-full bg-white z-10 shadow-sm ">
+    <div className="fixed bg-opacity-30 w-full z-10 shadow-sm ">
       <div className="py-3">
         <Container>
           <div className="navbar bg-stone-400-100 text-white">
@@ -87,11 +88,12 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="navbar-end">
+              <ThemChange></ThemChange>
               {user ? (
                 <>
                   <button
                     onClick={handleLogOut}
-                    className="btn btn-outline btn-primary"
+                    className="btn btn-outline text-white btn-primary"
                   >
                     Log out
                   </button>
@@ -99,7 +101,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/login"
-                  className="btn btn-outline btn-primary bg-opacity-50 text-white"
+                  className="btn btn-outline btn-primary border-white text-red-500"
                 >
                   Login
                 </Link>
@@ -107,7 +109,7 @@ const Navbar = () => {
               <div className="avatar ml-5">
                 <div className="w-12 rounded-full ring ring-primary  ring-offset-base-100 ring-offset-2">
                   <img
-                   src={user && user?.photoURL ? user?.photoURL : avatarImg}
+                    src={user && user?.photoURL ? user?.photoURL : avatarImg}
                     title={user?.displayName}
                     className="cursor-pointer"
                   />
