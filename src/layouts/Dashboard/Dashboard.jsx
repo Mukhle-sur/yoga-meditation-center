@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBook, FaHome, FaRegEnvelope, FaUsers } from "react-icons/fa";
+import { FaBook, FaChalkboardTeacher, FaHome, FaRegEnvelope, FaUsers } from "react-icons/fa";
 import { AiFillCheckSquare, AiFillCreditCard } from "react-icons/ai";
 import { BsBookFill } from "react-icons/bs";
 import "./Dashboard.css";
@@ -155,7 +155,7 @@ const Dashboard = () => {
                 to="/instructor"
                 className={({ isActive }) => (isActive ? "text" : "")}
               >
-                Instructors
+              <FaChalkboardTeacher size={24}></FaChalkboardTeacher> Instructors
               </NavLink>
             </li>
             <li>
