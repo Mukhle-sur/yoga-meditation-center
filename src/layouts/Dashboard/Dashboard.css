@@ -1,0 +1,25 @@
+.divider:before {
+  background: white;
+}
+.divider::after {
+  background: white;
+}
+.drawer-side ul li a {
+  background: transparent;
+}
+/* .drawer-side ul li a.active{
+      color: white;
+  } */
+
+.text {
+  color: white;
+}
+
+.container {
+  max-width: 1750px;
+  width: 100%;
+}
+
+.drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
+    background-color: none;
+}

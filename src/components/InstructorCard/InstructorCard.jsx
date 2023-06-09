@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 const InstructorCard = ({ instructor }) => {
-  const { image, name, classesNames } = instructor;
+  const { image, name, classesNames, _id } = instructor;
   return (
     <div className="card w-96 bg-base-100 shadow-xl justify-normal">
       <figure className="">
@@ -10,8 +11,11 @@ const InstructorCard = ({ instructor }) => {
           <span className="hidden md:block">Instructor</span> Name : {name}
         </h2>
         <p>Class : {classesNames}</p>
+
         <div className="card-actions mt-3">
-          <button className="btn btn-primary">See Class</button>
+          <Link to={`/instructor/${_id}`}>
+            <button className="btn btn-primary">See Class</button>
+          </Link>
         </div>
       </div>
     </div>

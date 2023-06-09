@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import ErrorPage from "../components/ErrorPage";
 import Instructors from "../pages/Instructors/Instructors";
 import AllClasses from "../pages/AllClasses/AllClasses";
+import Dashboard from "../layouts/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,12 @@ export const router = createBrowserRouter([
         element: <Instructors></Instructors>,
       },
       {
+        path: "/allInstructors/id",
+        element: <Instructors></Instructors>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/instructors/${params.id}`),
+      },
+      {
         path: "login",
         element: <Login></Login>,
       },
@@ -30,9 +37,13 @@ export const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path:'allClasses',
-        element:<AllClasses></AllClasses>
-      }
+        path: "allClasses",
+        element: <AllClasses></AllClasses>,
+      },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
   },
 ]);
