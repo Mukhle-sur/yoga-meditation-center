@@ -33,7 +33,7 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-
+    setLoading(true);
     // image upload
     const imageUrl = data.image[0];
     const formData = new FormData();
@@ -49,26 +49,29 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((imageData) => {
         const imageUrl = imageData.data.display_url;
-        console.log(imageUrl);
         createUser(data.email, data.password)
           .then((result) => {
             console.log(result);
             updateUserProfile(data.name, imageUrl).then(() => {
-              const savedUser = { name: data.name, email: data.email };
+              const saveUser = {
+                name: data.name,
+                email: data.email,
+                role: "Student",
+              };
               fetch("http://localhost:5000/users", {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",
                 },
-                body: JSON.stringify(savedUser),
+                body: JSON.stringify(saveUser),
               })
                 .then((res) => res.json())
                 .then((data) => {
-                  reset();
                   if (data.insertedId) {
+                    reset();
                     toast.success("SignUp Successfully");
+                    navigate("/");
                   }
-                  navigate(from, { replace: true });
                 });
             });
           })

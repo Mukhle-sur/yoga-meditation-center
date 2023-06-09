@@ -38,8 +38,25 @@ const Login = () => {
       .then((result) => {
         const loginUser = result.user;
         console.log(loginUser);
-        toast.success("Login SuccessFully");
-        navigate(from, { replace: true });
+        const savedUser = {
+          name: loginUser.displayName,
+          email: loginUser.email,
+          role: "Student",
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("SignUp Successfully");
+            }
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         toast.error(error.message);

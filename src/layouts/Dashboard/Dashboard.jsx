@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
-import { FaRegEnvelope, FaUsers } from "react-icons/fa";
+import { NavLink, Outlet } from "react-router-dom";
+import { FaBook, FaHome, FaRegEnvelope, FaUsers } from "react-icons/fa";
 import { AiFillCheckSquare, AiFillCreditCard } from "react-icons/ai";
 import { BsBookFill } from "react-icons/bs";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const isAdmin = true;
@@ -10,8 +11,9 @@ const Dashboard = () => {
     <div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content h-full w-full flex flex-col items-center justify-center ">
           {/* Page content here */}
+          <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
@@ -21,7 +23,7 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 h-full bg-[#D1A054] text-[#151515] font-medium">
+          <ul className="menu p-4 w-80 h-full bg-[#D1A054] text-[#151515] font-medium uppercase">
             {isAdmin ? (
               <>
                 <div className="max-w-xs pt-8 mb-7">
@@ -34,18 +36,19 @@ const Dashboard = () => {
                 </div>
                 <li>
                   <NavLink
-                    to="/"
+                    to="/dashboard/manageClasses"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
-                    <AiFillCheckSquare></AiFillCheckSquare> Manage Classes
+                    <AiFillCheckSquare size={24}></AiFillCheckSquare> Manage
+                    Classes
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/menu"
+                    to="/dashboard/manageUsers"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
-                    <FaUsers></FaUsers> Manage Users
+                    <FaUsers size={24}></FaUsers> Manage Users
                   </NavLink>
                 </li>
               </>
@@ -137,6 +140,32 @@ const Dashboard = () => {
                 </li>
               </>
             )}
+            {/* main-page-start  */}
+            <div className="divider"></div>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "text" : "")}
+              >
+                <FaHome size={24}></FaHome> Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/instructor"
+                className={({ isActive }) => (isActive ? "text" : "")}
+              >
+                Instructors
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/allClasses"
+                className={({ isActive }) => (isActive ? "text" : "")}
+              >
+                <FaBook size={24}></FaBook> Classes
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
