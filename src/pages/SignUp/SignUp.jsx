@@ -20,16 +20,17 @@ const SignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-//   use react hook form 
+  //   use react hook form
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
   const password = watch("password", "");
-  
+
   const onSubmit = (data) => {
     console.log(data);
 
@@ -53,8 +54,22 @@ const SignUp = () => {
           .then((result) => {
             console.log(result);
             updateUserProfile(data.name, imageUrl).then(() => {
-              toast.success("SignUp Successfully");
-              navigate(from, { replace: true });
+              const savedUser = { name: data.name, email: data.email };
+              fetch("http://localhost:5000/users", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(savedUser),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  reset();
+                  if (data.insertedId) {
+                    toast.success("SignUp Successfully");
+                  }
+                  navigate(from, { replace: true });
+                });
             });
           })
           .catch((error) => {
