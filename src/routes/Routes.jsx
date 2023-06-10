@@ -55,10 +55,10 @@ export const router = createBrowserRouter([
         path: "addClass",
         element: <AddClass></AddClass>,
       },
-      {
-        path:"instructorClasses",
-        element:
-      }
+      // {
+      //   path:"instructorClasses",
+      //   element:
+      // }
     ],
   },
 ]);

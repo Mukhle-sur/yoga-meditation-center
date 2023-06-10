@@ -5,16 +5,15 @@ import useAxiosSecure from "../useAxiosSecure/useAxiosSecure";
 const useClasses = () => {
   const { loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const { data: classes = [], isLoading: isAdminLoading } = useQuery({
+  const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/classesCollection`);
-      console.log("isAdmin response", res);
-      return res.data.classes;
+      const res = await axiosSecure.get("/allClasses");
+      return res.data;
     },
   });
-  return [classes, isAdminLoading];
+  return [classes, refetch];
 };
 
 export default useClasses;

@@ -10,7 +10,6 @@ const ManageUser = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
-      console.log("user response", res);
       return res.data;
     },
   });
