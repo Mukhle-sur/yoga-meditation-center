@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { toast } from "react-hot-toast";
 const AddClass = () => {
   const { user } = useContext(AuthContext);
   //   use react hook form
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -35,7 +37,20 @@ const AddClass = () => {
           price: data.price,
           status: "pending",
         };
-        console.log(saveClassInfo);
+        fetch("http://localhost:5000/classes",{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify(saveClassInfo)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (data.insertedId) {
+                reset();
+                toast.success("Class Add Request Successful");
+              }
+        })
       });
   };
   return (

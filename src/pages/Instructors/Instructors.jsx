@@ -15,7 +15,7 @@ const Instructors = () => {
       });
   }, []);
   return (
-    <div className="mt-28">
+    <div className="my-28">
       <Container>
         <div>
           <SectionTitle
