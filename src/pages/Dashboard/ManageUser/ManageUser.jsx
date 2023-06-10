@@ -1,5 +1,4 @@
 import { toast } from "react-hot-toast";
-import { FaUserCog } from "react-icons/fa";
 import { useQuery } from "react-query";
 
 const ManageUser = () => {
@@ -47,8 +46,8 @@ const ManageUser = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Make Admin</th>
-              <th>Make Instructor</th>
+              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -64,9 +63,9 @@ const ManageUser = () => {
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-md bg-[#D1A054] text-xl text-white"
+                      className="btn btn-sm bg-[#D1A054] text-base text-white"
                     >
-                      <FaUserCog></FaUserCog>
+                      Make Admin
                     </button>
                   )}
                 </td>
@@ -75,11 +74,11 @@ const ManageUser = () => {
                     "Instructor"
                   ) : (
                     <button
-                      onClick={() => handleMakeInstructor(user)}
-                      className="btn btn-md bg-[#D1A054] text-xl text-white"
-                    >
-                      <FaUserCog></FaUserCog>
-                    </button>
+                    onClick={() => handleMakeInstructor(user)}
+                    className="btn btn-sm bg-[#D1A054] text-base text-white"
+                  >
+                    Make Instructor
+                  </button>
                   )}
                 </td>
               </tr>

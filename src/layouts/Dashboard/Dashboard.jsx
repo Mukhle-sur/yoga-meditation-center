@@ -5,8 +5,8 @@ import { BsBookFill } from "react-icons/bs";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const isAdmin = true;
-  const isInstructor = false;
+  const isAdmin = false;
+  const isInstructor = true;
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -64,7 +64,7 @@ const Dashboard = () => {
                 </div>
                 <li>
                   <NavLink
-                    to="/"
+                    to="/dashboard/myClasses"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
                     <AiFillCheckSquare></AiFillCheckSquare> My Classes
@@ -72,7 +72,7 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/menu"
+                    to="/dashboard/addClass"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
                     <BsBookFill></BsBookFill> Add a Class
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/shop/salad"
+                    to="/dashboard/enrolledStudent"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
                     <AiFillCreditCard></AiFillCreditCard> Total Enrolled

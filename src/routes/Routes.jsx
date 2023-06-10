@@ -8,6 +8,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
 
 export const router = createBrowserRouter([
   {
@@ -22,12 +23,6 @@ export const router = createBrowserRouter([
       {
         path: "allInstructors",
         element: <Instructors></Instructors>,
-      },
-      {
-        path: "/allInstructors/id",
-        element: <Instructors></Instructors>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/instructors/${params.id}`),
       },
       {
         path: "login",
@@ -53,6 +48,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "manageClasses",
+      },
+      {
+        path: "addClass",
+        element: <AddClass></AddClass>,
       },
     ],
   },
