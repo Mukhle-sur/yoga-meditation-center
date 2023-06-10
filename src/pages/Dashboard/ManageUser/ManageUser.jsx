@@ -1,14 +1,21 @@
 import { toast } from "react-hot-toast";
-import { useQuery } from "react-query";
-
+import useAxiosSecure from "../../../components/hooks/useAxiosSecure/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../components/hooks/useAuth/useAuth";
 const ManageUser = () => {
-  //  load all user
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+  const { loading } = useAuth();
+  const [axiosSecure] = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      console.log("user response", res);
+      return res.data;
+    },
   });
 
-  //   update a role
+  // update a role
   const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
@@ -74,11 +81,11 @@ const ManageUser = () => {
                     "Instructor"
                   ) : (
                     <button
-                    onClick={() => handleMakeInstructor(user)}
-                    className="btn btn-sm bg-[#D1A054] text-base text-white"
-                  >
-                    Make Instructor
-                  </button>
+                      onClick={() => handleMakeInstructor(user)}
+                      className="btn btn-sm bg-[#D1A054] text-base text-white"
+                    >
+                      Make Instructor
+                    </button>
                   )}
                 </td>
               </tr>

@@ -1,12 +1,20 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBook, FaChalkboardTeacher, FaHome, FaRegEnvelope, FaUsers } from "react-icons/fa";
+import {
+  FaBook,
+  FaChalkboardTeacher,
+  FaHome,
+  FaRegEnvelope,
+  FaUsers,
+} from "react-icons/fa";
 import { AiFillCheckSquare, AiFillCreditCard } from "react-icons/ai";
 import { BsBookFill } from "react-icons/bs";
 import "./Dashboard.css";
+import useAdmin from "../../components/hooks/useAdmin/useAdmin";
+import useInstructor from "../../components/hooks/useInstructor/useInstructor";
 
 const Dashboard = () => {
-  const isAdmin = false;
-  const isInstructor = true;
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -155,7 +163,8 @@ const Dashboard = () => {
                 to="/instructor"
                 className={({ isActive }) => (isActive ? "text" : "")}
               >
-              <FaChalkboardTeacher size={24}></FaChalkboardTeacher> Instructors
+                <FaChalkboardTeacher size={24}></FaChalkboardTeacher>{" "}
+                Instructors
               </NavLink>
             </li>
             <li>

@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../../components/hooks/useAxiosSecure/useAxiosSecure";
 const AddClass = () => {
   const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   //   use react hook form
   const {
     register,
@@ -17,7 +19,6 @@ const AddClass = () => {
     const imageUrl = data.image[0];
     const formData = new FormData();
     formData.append("image", imageUrl);
-    console.log(formData);
     const url = `https://api.imgbb.com/1/upload?key=${
       import.meta.env.VITE_img_upload_key
     }`;
@@ -27,30 +28,35 @@ const AddClass = () => {
     })
       .then((res) => res.json())
       .then((imageData) => {
-        const imageUrl = imageData.data.display_url;
-        const saveClassInfo = {
-          image: imageUrl,
-          className: data.className,
-          instructorName: data.instructorName,
-          instructorEmail: data.instructorEmail,
-          availableSeat: data.seat,
-          price: data.price,
-          status: "pending",
-        };
-        fetch("http://localhost:5000/classes",{
-            method:"POST",
-            headers:{
-                "content-type":"application/json"
-            },
-            body:JSON.stringify(saveClassInfo)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if (data.insertedId) {
+        if (imageData.success) {
+          // image link find and add
+          const imageUrl = imageData.data.display_url;
+
+          //   post data an server side
+          const saveClassInfo = {
+            image: imageUrl,
+            className: data.className,
+            instructorName: data.instructorName,
+            instructorEmail: data.instructorEmail,
+            availableSeat: parseInt(data.seat),
+            price: parseInt(data.price),
+            status: "pending",
+          };
+          axiosSecure
+            .post("/addClasses", saveClassInfo)
+            .then((data) => {
+              if (data.data.insertedId) {
                 reset();
-                toast.success("Class Add Request Successful");
+                toast.success("Your Class Add Request Is Successful");
               }
-        })
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
   };
   return (
@@ -85,7 +91,7 @@ const AddClass = () => {
                 accept="image/*"
               />
               {errors.image?.type === "required" && (
-                <p className="text-red-600 mt-1">Password is required</p>
+                <p className="text-red-600 mt-1">image is required</p>
               )}
             </div>
             <div className="form-control my-2">
@@ -123,7 +129,7 @@ const AddClass = () => {
                 className="input input-bordered"
               />
               {errors.seat?.type === "required" && (
-                <p className="text-red-600 mt-1">Password is required</p>
+                <p className="text-red-600 mt-1">seat is required</p>
               )}
             </div>
             <div className="form-control">
@@ -135,7 +141,7 @@ const AddClass = () => {
                 className="input input-bordered"
               />
               {errors.price?.type === "required" && (
-                <p className="text-red-600 mt-1">Password is required</p>
+                <p className="text-red-600 mt-1">price is required</p>
               )}
             </div>
           </div>
