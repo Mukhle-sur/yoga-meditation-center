@@ -1,10 +1,24 @@
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../components/hooks/useAxiosSecure/useAxiosSecure";
-import useClasses from "../../../components/hooks/useClasses/useClasses";
+// import useClasses from "../../../components/hooks/useClasses/useClasses";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../components/hooks/useAuth/useAuth";
 
 const ManageClass = () => {
-  const [classes, refetch] = useClasses();
+  // const [classes, refetch] = useClasses();
   const [axiosSecure] = useAxiosSecure();
+  const { loading } = useAuth();
+  const { data: classes = [], refetch } = useQuery({
+    queryKey: ["classes"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get("/allClasses");
+      return res.data;
+    },
+  });
+
+  //   make approved
   const handleMakeApproved = (classItem) => {
     axiosSecure
       .patch(`/users/approved/${classItem._id}`)
@@ -12,22 +26,28 @@ const ManageClass = () => {
         const { data } = response;
         if (data.modifiedCount) {
           refetch();
-          toast.success(`${classItem?.name} Your Class Added`);
+          toast.success(`${classItem?.instructorName} Your Class Added`);
         }
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
+
+  //   TODO  make denied and send feedBack
+  //   make denied
   const handleMakeDenied = (classItem) => {
     axiosSecure.patch(`/users/denied/${classItem._id}`).then((response) => {
       const { data } = response;
       if (data.modifiedCount) {
         refetch();
-        toast.success(`${classItem?.name} Your Class is a Denied`);
+        toast.success(`${classItem?.instructorName} Your Class is a Denied`);
       }
     });
   };
+
+  //   send Feedback
+
   return (
     <div className="w-full h-full p-5">
       <h3 className="text-3xl font-bold mb-5">
@@ -81,7 +101,11 @@ const ManageClass = () => {
                 </td>
                 <td>
                   {classItem?.status === "Denied" ? (
-                    "Denied"
+                    <Link to={`/dashboard/feedback/${classItem?._id}`}>
+                      <button className="btn btn-xs bg-[#D1A054] text-base text-white">
+                        Feedback
+                      </button>
+                    </Link>
                   ) : (
                     <button
                       onClick={() => handleMakeDenied(classItem)}
