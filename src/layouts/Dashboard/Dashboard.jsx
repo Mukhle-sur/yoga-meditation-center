@@ -156,7 +156,7 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/shop/salad"
+                    to="/dashboard/payment"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
                     <AiFillCreditCard></AiFillCreditCard> Payment

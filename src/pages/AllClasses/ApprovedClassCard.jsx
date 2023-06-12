@@ -1,24 +1,24 @@
 import { toast } from "react-hot-toast";
 import useAuth from "../../components/hooks/useAuth/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAddClass from "../../components/hooks/useAddClass/useAddClass";
 
 const ApprovedClassCard = ({ approvedClass }) => {
   const { image, className, instructorName, availableSeat, price, _id } =
     approvedClass;
   const { user } = useAuth();
   const navigate = useNavigate();
-
-  const handleAddClass = (approvedClass) => {
-    console.log(approvedClass);
+  const [, refetch] = useAddClass();
+  const handleAddClass = () => {
     const addClass = {
       addClass: _id,
       image,
       price,
-      email: user.email,
+      email: user?.email,
       className,
       instructorName,
     };
-    if (user && user?.email) {
+    if (user) {
       fetch("http://localhost:5000/studentAddClasses", {
         method: "POST",
         headers: {
@@ -30,6 +30,7 @@ const ApprovedClassCard = ({ approvedClass }) => {
         .then((data) => {
           if (data.insertedId) {
             toast.success("Your Class Selected Successfully");
+            refetch();
           }
         });
     } else {
@@ -38,7 +39,6 @@ const ApprovedClassCard = ({ approvedClass }) => {
     }
   };
 
-  
   return (
     <div className="card w-96 bg-base-100 shadow-xl justify-normal">
       <figure className="">
