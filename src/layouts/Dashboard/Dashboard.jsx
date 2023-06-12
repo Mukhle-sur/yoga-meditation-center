@@ -44,6 +44,14 @@ const Dashboard = () => {
                 </div>
                 <li>
                   <NavLink
+                    to="/dashboard/adminHome"
+                    className={({ isActive }) => (isActive ? "text" : "")}
+                  >
+                    <AiFillCheckSquare size={24}></AiFillCheckSquare> Admin Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to="/dashboard/manageClasses"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
@@ -70,6 +78,14 @@ const Dashboard = () => {
                     Instructor Dashboard
                   </p>
                 </div>
+                <li>
+                  <NavLink
+                    to="/dashboard/instructorHome"
+                    className={({ isActive }) => (isActive ? "text" : "")}
+                  >
+                    <AiFillCheckSquare size={24}></AiFillCheckSquare> Instructor Home
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="/dashboard/instructorAllClasses"
@@ -114,6 +130,14 @@ const Dashboard = () => {
                     Student Dashboard
                   </p>
                 </div>
+                <li>
+                  <NavLink
+                    to="/dashboard/studentHome"
+                    className={({ isActive }) => (isActive ? "text" : "")}
+                  >
+                    <AiFillCheckSquare size={24}></AiFillCheckSquare> Student Home
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="/dashboard/mySelectedClass"

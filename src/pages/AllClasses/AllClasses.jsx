@@ -14,7 +14,6 @@ const AllClasses = () => {
       return res.data;
     },
   });
-  console.log("approved", classes);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-7 my-28">
       {classes.map((approvedClass) => (

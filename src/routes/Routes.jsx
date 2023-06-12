@@ -13,6 +13,9 @@ import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
 import FeedBack from "../pages/Dashboard/ManageClass/FeedBack";
 import InstructorClasses from "../pages/InstructorClasses/InstructorClasses";
 import StudentSelectClass from "../layouts/Dashboard/StudentSelectClass/StudentSelectClass";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
+import StudentHome from "../pages/Dashboard/StudentHome/StudentHome";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +50,10 @@ export const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
         path: "manageUsers",
         element: <ManageUser></ManageUser>,
       },
@@ -55,16 +62,24 @@ export const router = createBrowserRouter([
         element: <ManageClass></ManageClass>,
       },
       {
-        path: "addClass",
-        element: <AddClass></AddClass>,
-      },
-      {
         path: "feedback/:id",
         element: <FeedBack></FeedBack>,
       },
       {
+        path: "instructorHome",
+        element: <InstructorHome></InstructorHome>,
+      },
+      {
+        path: "addClass",
+        element: <AddClass></AddClass>,
+      },
+      {
         path: "instructorAllClasses",
         element: <InstructorClasses></InstructorClasses>,
+      },
+      {
+        path: "studentHome",
+        element: <StudentHome></StudentHome>,
       },
       {
         path: "mySelectedClass",

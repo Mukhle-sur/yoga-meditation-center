@@ -17,7 +17,6 @@ const ApprovedClassCard = ({ approvedClass }) => {
       email: user.email,
       className,
       instructorName,
-      availableSeat
     };
     if (user && user?.email) {
       fetch("http://localhost:5000/studentAddClasses", {
@@ -38,6 +37,8 @@ const ApprovedClassCard = ({ approvedClass }) => {
       navigate("/login");
     }
   };
+
+  
   return (
     <div className="card w-96 bg-base-100 shadow-xl justify-normal">
       <figure className="">

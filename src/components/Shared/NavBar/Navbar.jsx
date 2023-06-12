@@ -8,11 +8,14 @@ import { toast } from "react-hot-toast";
 import ThemChange from "./ThemChange";
 import useAddClass from "../../hooks/useAddClass/useAddClass";
 import { FaShoppingCart } from "react-icons/fa";
+import useAdmin from "../../hooks/useAdmin/useAdmin";
+import useInstructor from "../../hooks/useInstructor/useInstructor";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
-  const [addClass] = useAddClass();
-  console.log("from navbar", addClass);
+  const [addClasses] = useAddClass();
   // user  logOut
   const handleLogOut = () => {
     logOut()
@@ -40,21 +43,46 @@ const Navbar = () => {
           Classes
         </Link>
       </li>
-      {user && (
-        <li>
-          <Link className="text-lg font-medium" to="/dashboard">
-            Dashboard
-          </Link>
-        </li>
+      {user &&
+        (isAdmin ? (
+          <li>
+            <Link className="text-lg font-medium" to="/dashboard/adminHome">
+              Dashboard
+            </Link>
+          </li>
+        ) : isInstructor ? (
+          <li>
+            <Link
+              className="text-lg font-medium"
+              to="/dashboard/instructorHome"
+            >
+              Dashboard
+            </Link>
+          </li>
+        ) : (
+          <li>
+            <Link className="text-lg font-medium" to="/dashboard/studentHome">
+              Dashboard
+            </Link>
+          </li>
+        ))}
+
+      {isAdmin ? (
+        ""
+      ) : isInstructor ? (
+        ""
+      ) : (
+        <>
+          <li className="ml-2">
+            <Link to="dashboard/mySelectedClass" className="justify-between">
+              <FaShoppingCart></FaShoppingCart>
+              <span className="badge badge-secondary">
+                +{addClasses?.length}
+              </span>
+            </Link>
+          </li>
+        </>
       )}
-      {
-        <li className="ml-2">
-          <Link to="dashboard/mySelectedClass" className="justify-between">
-            <FaShoppingCart></FaShoppingCart>
-            <span className="badge badge-secondary">+{addClass?.length}</span>
-          </Link>
-        </li>
-      }
     </>
   );
   return (
@@ -82,7 +110,7 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-sans md:items-center"
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-sans"
                 >
                   {navItems}
                 </ul>
@@ -95,7 +123,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1 font-sans">
+              <ul className="menu menu-horizontal px-1 font-sans items-center">
                 {navItems}
               </ul>
             </div>
