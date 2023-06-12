@@ -6,9 +6,13 @@ import logo from "../../../assets/images/yogalogo.png";
 import avatarImg from "../../../assets/images/placeholder.jpg";
 import { toast } from "react-hot-toast";
 import ThemChange from "./ThemChange";
+import useAddClass from "../../hooks/useAddClass/useAddClass";
+import { FaShoppingCart } from "react-icons/fa";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
+  const [addClass] = useAddClass();
+  console.log("from navbar", addClass);
   // user  logOut
   const handleLogOut = () => {
     logOut()
@@ -43,13 +47,21 @@ const Navbar = () => {
           </Link>
         </li>
       )}
+      {
+        <li className="ml-2">
+          <Link to="dashboard/mySelectedClass" className="justify-between">
+            <FaShoppingCart></FaShoppingCart>
+            <span className="badge badge-secondary">+{addClass?.length}</span>
+          </Link>
+        </li>
+      }
     </>
   );
   return (
     <div className="fixed top-0 bg-opacity-30 w-full z-10 shadow-sm bg-sky-950">
       <div className="py-3">
         <Container>
-          <div className="navbar  text-white ">
+          <div className="navbar  md:text-white ">
             <div className="navbar-start">
               <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -70,7 +82,7 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-sans"
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-sans md:items-center"
                 >
                   {navItems}
                 </ul>

@@ -116,7 +116,7 @@ const Dashboard = () => {
                 </div>
                 <li>
                   <NavLink
-                    to="/"
+                    to="/dashboard/mySelectedClass"
                     className={({ isActive }) => (isActive ? "text" : "")}
                   >
                     <AiFillCheckSquare></AiFillCheckSquare> My Selected Classes

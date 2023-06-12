@@ -12,6 +12,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
 import FeedBack from "../pages/Dashboard/ManageClass/FeedBack";
 import InstructorClasses from "../pages/InstructorClasses/InstructorClasses";
+import StudentSelectClass from "../layouts/Dashboard/StudentSelectClass/StudentSelectClass";
 
 export const router = createBrowserRouter([
   {
@@ -62,9 +63,13 @@ export const router = createBrowserRouter([
         element: <FeedBack></FeedBack>,
       },
       {
-        path:"instructorAllClasses",
-        element:<InstructorClasses></InstructorClasses>
-      }
+        path: "instructorAllClasses",
+        element: <InstructorClasses></InstructorClasses>,
+      },
+      {
+        path: "mySelectedClass",
+        element: <StudentSelectClass></StudentSelectClass>,
+      },
     ],
   },
 ]);
