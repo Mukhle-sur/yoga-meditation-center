@@ -20,6 +20,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PymentHistory/PaymentHistory";
 import StudentEnrolledClasses from "../pages/Dashboard/StudentEnrolledClasses/StudentEnrolledClasses";
 import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 
 export const router = createBrowserRouter([
   {
@@ -87,15 +88,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "instructorHome",
-        element: <InstructorHome></InstructorHome>,
+        element: (
+          <InstructorRoute>
+            <InstructorHome></InstructorHome>
+          </InstructorRoute>
+        ),
       },
       {
         path: "addClass",
-        element: <AddClass></AddClass>,
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
       },
       {
         path: "instructorAllClasses",
-        element: <InstructorClasses></InstructorClasses>,
+        element: (
+          <InstructorRoute>
+            <InstructorClasses></InstructorClasses>
+          </InstructorRoute>
+        ),
       },
       {
         path: "studentHome",
