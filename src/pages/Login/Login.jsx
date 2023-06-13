@@ -101,9 +101,9 @@ const Login = () => {
           onSubmit={handleSubmit(onSubmit)}
           noValidate=""
           action=""
-          className="ng-untouched ng-pristine ng-valid m-0"
+          className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
-          <div className="">
+          <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
                 Email address
@@ -151,7 +151,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="bg-rose-500 w-full rounded-md  text-white"
+              className="bg-rose-500 w-full rounded-md py-3 text-white"
             >
               {loading ? (
                 <TbFidgetSpinner
@@ -164,13 +164,13 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div>
-          <p
+        <div className="space-y-1">
+          <button
             onClick={handleReset}
-            className="text-sm mt-2 hover:underline hover:text-rose-500 text-gray-400 cursor-pointer"
+            className="text-xs hover:underline hover:text-rose-500 text-gray-400"
           >
             Forgot password?
-          </p>
+          </button>
         </div>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

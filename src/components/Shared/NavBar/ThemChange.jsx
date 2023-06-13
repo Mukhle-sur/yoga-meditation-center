@@ -48,12 +48,11 @@ const ThemChange = () => {
     }
   };
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate mr-5">
       {/* this hidden checkbox controls the state */}
       <input
         type="checkbox"
         onChange={handleThemeChange}
-        className="contents"
       />
 
       {/* sun icon */}
