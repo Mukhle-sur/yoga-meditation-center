@@ -17,6 +17,7 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
 import StudentHome from "../pages/Dashboard/StudentHome/StudentHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PymentHistory/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -92,7 +93,7 @@ export const router = createBrowserRouter([
       },
       {
         path:"paymentHistory",
-        
+        element:<PaymentHistory></PaymentHistory>
       }
 
     ],
