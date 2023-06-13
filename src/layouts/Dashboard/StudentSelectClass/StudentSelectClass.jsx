@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const StudentSelectClass = () => {
-  const [addClasses,refetch] = useAddClass();
+  const [addClasses, refetch] = useAddClass();
   const total = addClasses.reduce((sum, item) => item.price + sum, 0);
 
   const handleDelete = (item) => {
@@ -39,9 +39,6 @@ const StudentSelectClass = () => {
           Total User : {addClasses.length}
         </h3>
         <h3 className="text-3xl font-bold mb-5">Total Price : ${total}</h3>
-        <Link to='/dashboard/payment'>
-          <button className="btn btn-outline btn-sm">Pay</button>
-        </Link>
       </div>
 
       <div className="overflow-x-auto w-full">
@@ -54,38 +51,46 @@ const StudentSelectClass = () => {
               <th>CLASS NAME</th>
               <th>INSTRUCTOR NAME</th>
               <th>PRICE</th>
+              <th>Payment</th>
               <th>ACTION</th>
             </tr>
           </thead>
           <tbody>
-            {addClasses.map((item, index) => (
-              <tr key={item._id}>
-                <td>{index + 1}</td>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+            {addClasses
+              .filter((booked) => booked.paid !== "paid")
+              .map((item, index) => (
+                <tr key={item._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="flex items-center space-x-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src={item.image}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td>{item.className}</td>
-                <td>{item.instructorName}</td>
-                <td>${item.price}</td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(item)}
-                    className="btn btn-md bg-[#B91C1C] text-white"
-                  >
-                    <FaTrashAlt></FaTrashAlt>
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td>{item.className}</td>
+                  <td>{item.instructorName}</td>
+                  <td>${item.price}</td>
+                  <td>
+                    <Link to={`/dashboard/payment/${item._id}`}>
+                      <button className="btn btn-outline btn-sm">Pay</button>
+                    </Link>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleDelete(item)}
+                      className="btn btn-md bg-[#B91C1C] text-white"
+                    >
+                      <FaTrashAlt></FaTrashAlt>
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
           {/* foot */}
         </table>

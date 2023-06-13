@@ -16,6 +16,7 @@ import StudentSelectClass from "../layouts/Dashboard/StudentSelectClass/StudentS
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import InstructorHome from "../pages/Dashboard/InstructorHome/InstructorHome";
 import StudentHome from "../pages/Dashboard/StudentHome/StudentHome";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,15 @@ export const router = createBrowserRouter([
         path: "mySelectedClass",
         element: <StudentSelectClass></StudentSelectClass>,
       },
+      {
+        path:"payment/:id",
+        element:<Payment></Payment>
+      },
+      {
+        path:"paymentHistory",
+        
+      }
+
     ],
   },
 ]);
