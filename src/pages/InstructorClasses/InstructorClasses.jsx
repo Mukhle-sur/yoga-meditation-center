@@ -3,6 +3,7 @@ import { FaEdit } from "react-icons/fa";
 import useAxiosSecure from "../../components/hooks/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../components/hooks/useAuth/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const InstructorClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -15,7 +16,6 @@ const InstructorClasses = () => {
       return res.data;
     },
   });
-  console.log(classes);
 
   return (
     <div className="w-full h-full p-5">
@@ -52,9 +52,11 @@ const InstructorClasses = () => {
                 <td>{classItem?.status}</td>
                 <td>{classItem?.feedBack}</td>
                 <td>
-                  <button className="btn btn-md btn-outline bg-[#B91C1C] text-white">
-                    <FaEdit></FaEdit>
-                  </button>
+                  <Link to={`/dashboard/updateClass/${classItem._id}`}>
+                    <button className="btn btn-md btn-outline bg-[#B91C1C] text-white">
+                      <FaEdit></FaEdit>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

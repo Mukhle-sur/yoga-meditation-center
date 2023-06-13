@@ -1,13 +1,11 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../components/hooks/useAxiosSecure/useAxiosSecure";
-import { useLocation, useNavigate } from "react-router-dom";
-import useClasses from "../../../components/hooks/useClasses/useClasses";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const FeedBack = () => {
-//   const [classes] = useClasses();
-//   console.log("Classs", classes);
-//   const 
+  const { id } = useParams();
+  console.log(id);
   const [axiosSecure] = useAxiosSecure();
 
   const navigate = useNavigate();
@@ -22,9 +20,8 @@ const FeedBack = () => {
 
   const onSubmit = (data) => {
     const feedBack = data.feedBack;
-    console.log(feedBack);
     axiosSecure
-      .put(`("/users/feedback/${id}`, feedBack)
+      .put(`/users/feedback/${id}`, feedBack)
       .then((data) => {
         if (data.data.modifiedCount > 0) {
           reset();

@@ -36,7 +36,7 @@ const PopularInstructor = () => {
   };
 
   return (
-    <div>
+    <div className="mb-14">
       <div>
         <SectionTitle
           subHeading={"Our Instructor"}
@@ -62,7 +62,7 @@ const PopularInstructor = () => {
               <div className="card-body">
                 <h2 className="card-title">{item.instructorName}</h2>
                 <p>{item?.instructorEmail}</p>
-                <p>{item?.className}</p>
+                <p>Class Name : {item?.className}</p>
               </div>
             </div>
           </SwiperSlide>

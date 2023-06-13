@@ -21,6 +21,7 @@ import PaymentHistory from "../pages/Dashboard/PymentHistory/PaymentHistory";
 import StudentEnrolledClasses from "../pages/Dashboard/StudentEnrolledClasses/StudentEnrolledClasses";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import UpdatedClass from "../pages/InstructorClasses/UpdatedClass";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ export const router = createBrowserRouter([
         element: (
           <InstructorRoute>
             <InstructorClasses></InstructorClasses>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "updateClass/:id",
+        element: (
+          <InstructorRoute>
+            <UpdatedClass></UpdatedClass>
           </InstructorRoute>
         ),
       },

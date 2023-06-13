@@ -11,6 +11,7 @@ const ApprovedClassCard = ({ approvedClass }) => {
     instructorImage,
     availableSeat,
     price,
+    instructorEmail,
     _id,
   } = approvedClass;
   const { user } = useAuth();
@@ -25,6 +26,7 @@ const ApprovedClassCard = ({ approvedClass }) => {
       className,
       instructorName,
       instructorImage,
+      instructorEmail,
     };
     if (user) {
       fetch("http://localhost:5000/studentAddClasses", {
