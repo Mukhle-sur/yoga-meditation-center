@@ -4,8 +4,15 @@ import { useNavigate } from "react-router-dom";
 import useAddClass from "../../components/hooks/useAddClass/useAddClass";
 
 const ApprovedClassCard = ({ approvedClass }) => {
-  const { image, className, instructorName, availableSeat, price, _id } =
-    approvedClass;
+  const {
+    image,
+    className,
+    instructorName,
+    instructorImage,
+    availableSeat,
+    price,
+    _id,
+  } = approvedClass;
   const { user } = useAuth();
   const navigate = useNavigate();
   const [, refetch] = useAddClass();
@@ -17,6 +24,7 @@ const ApprovedClassCard = ({ approvedClass }) => {
       email: user?.email,
       className,
       instructorName,
+      instructorImage,
     };
     if (user) {
       fetch("http://localhost:5000/studentAddClasses", {

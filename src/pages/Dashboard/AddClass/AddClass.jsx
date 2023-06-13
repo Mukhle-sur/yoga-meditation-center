@@ -41,6 +41,7 @@ const AddClass = () => {
             availableSeat: parseInt(data.seat),
             price: parseInt(data.price),
             status: "pending",
+            instructorImage: user?.photoURL,
           };
           axiosSecure
             .post("/addClasses", saveClassInfo)
