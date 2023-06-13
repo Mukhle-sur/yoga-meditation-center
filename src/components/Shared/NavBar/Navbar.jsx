@@ -83,6 +83,10 @@ const Navbar = () => {
           </li>
         </>
       )}
+
+      <div className=" md:hidden ml-5">
+        <ThemChange></ThemChange>
+      </div>
     </>
   );
   return (
@@ -116,7 +120,7 @@ const Navbar = () => {
                 </ul>
               </div>
               <div className="flex items-center">
-                <img src={logo} alt="" className="w-12" />
+                <img src={logo} alt="" className="w-12 hidden md:block" />
                 <h4 className="uppercase text-3xl ml-2">
                   Yoga <span className="text-rose-500">Center</span>
                 </h4>
@@ -128,7 +132,9 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="navbar-end">
-              <ThemChange></ThemChange>
+              <div className="hidden md:block mr-5">
+                <ThemChange></ThemChange>
+              </div>
               {user ? (
                 <>
                   <button

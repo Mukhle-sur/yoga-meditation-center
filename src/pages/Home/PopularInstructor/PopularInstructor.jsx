@@ -57,7 +57,7 @@ const PopularInstructor = () => {
           <SwiperSlide key={item._id} className="w-full mt-8">
             <div className="card   border-2">
               <figure>
-                <img src={item?.instructorImage} alt="" />
+                <img src={item?.instructorImage} alt="" className="w-full" />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{item.instructorName}</h2>
