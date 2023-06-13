@@ -69,7 +69,7 @@ const ManageUser = () => {
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-sm bg-[#D1A054] text-base text-white"
+                      className="btn btn-xs bg-[#D1A054] text-base text-white"
                     >
                       Make Admin
                     </button>
@@ -81,7 +81,7 @@ const ManageUser = () => {
                   ) : (
                     <button
                       onClick={() => handleMakeInstructor(user)}
-                      className="btn btn-sm bg-[#D1A054] text-base text-white"
+                      className="btn btn-xs bg-[#D1A054] text-base text-white"
                     >
                       Make Instructor
                     </button>

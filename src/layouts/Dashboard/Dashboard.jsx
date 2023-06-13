@@ -162,14 +162,6 @@ const Dashboard = () => {
                     <AiFillCreditCard></AiFillCreditCard> Payment History
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/contact"
-                    className={({ isActive }) => (isActive ? "text" : "")}
-                  >
-                    <FaRegEnvelope></FaRegEnvelope> Contact
-                  </NavLink>
-                </li>
               </>
             )}
             {/* main-page-start  */}
@@ -184,7 +176,7 @@ const Dashboard = () => {
             </li>
             <li>
               <NavLink
-                to="/instructor"
+                to="/allInstructors"
                 className={({ isActive }) => (isActive ? "text" : "")}
               >
                 <FaChalkboardTeacher size={24}></FaChalkboardTeacher>{" "}

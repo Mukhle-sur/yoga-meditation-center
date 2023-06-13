@@ -129,7 +129,7 @@ const SignUp = () => {
           onSubmit={handleSubmit(onSubmit)}
           noValidate=""
           action=""
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
+          className=" ng-untouched ng-pristine ng-valid m-0"
         >
           <div className="space-y-4">
             <div>
@@ -282,7 +282,8 @@ const SignUp = () => {
           <div>
             <button
               type="submit"
-              className="bg-rose-500 w-full rounded-md py-3 text-white"
+              className="bg-rose-500 w-full rounded-md 
+               text-white"
             >
               {loading ? (
                 <TbFidgetSpinner

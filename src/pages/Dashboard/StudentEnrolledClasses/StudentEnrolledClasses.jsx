@@ -31,7 +31,7 @@ const StudentEnrolledClasses = () => {
                 <td>{index + 1}</td>
                 <td>{item.className}</td>
 
-                <td>{item.price}</td>
+                <td>${item.price}</td>
 
                 <td>{formatDateTime(item.date)}</td>
               </tr>

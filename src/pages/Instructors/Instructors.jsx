@@ -10,7 +10,6 @@ const Instructors = () => {
     fetch("http://localhost:5000/instructors")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInstructors(data);
       });
   }, []);

@@ -19,6 +19,7 @@ import StudentHome from "../pages/Dashboard/StudentHome/StudentHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PymentHistory/PaymentHistory";
 import StudentEnrolledClasses from "../pages/Dashboard/StudentEnrolledClasses/StudentEnrolledClasses";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -54,19 +55,35 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageUsers",
-        element: <ManageUser></ManageUser>,
+        element: (
+          <AdminRoute>
+            <ManageUser></ManageUser>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageClasses",
-        element: <ManageClass></ManageClass>,
+        element: (
+          <AdminRoute>
+            <ManageClass></ManageClass>
+          </AdminRoute>
+        ),
       },
       {
         path: "feedback/:id",
-        element: <FeedBack></FeedBack>,
+        element: (
+          <AdminRoute>
+            <FeedBack></FeedBack>
+          </AdminRoute>
+        ),
       },
       {
         path: "instructorHome",
