@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import useAxiosSecure from "../../../components/hooks/useAxiosSecure/useAxiosSecure";
+// import useAxiosSecure from "../../../components/hooks/useAxiosSecure/useAxiosSecure";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const FeedBack = () => {
   const { id } = useParams();
   console.log(id);
-  const [axiosSecure] = useAxiosSecure();
+  // const [axiosSecure] = useAxiosSecure();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,18 +20,39 @@ const FeedBack = () => {
 
   const onSubmit = (data) => {
     const feedBack = data.feedBack;
-    axiosSecure
-      .put(`/users/feedback/${id}`, feedBack)
+    fetch(
+      `https://yoga-meditation-server-ruby.vercel.app/user/feedback/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(feedBack),
+      }
+    )
+      .then((res) => res.json())
       .then((data) => {
-        if (data.data.modifiedCount > 0) {
+        if (data.modifiedCount > 0) {
           reset();
-          toast.success("Your feedBackF is Successful");
+          toast.success("Your feedback added Successful");
         }
         navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
       });
+    // axiosSecure
+    //   .put(`/users/feedback/${id}`, feedBack)
+    //   .then((data) => {
+    //     if (data.data.modifiedCount > 0) {
+    //       reset();
+    //       toast.success("Your feedBackF is Successful");
+    //     }
+    //     navigate(from, { replace: true });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //   });
   };
   return (
     <div className="bg-gray-50 p-24 rounded-xl my-10 w-4/6">

@@ -10,8 +10,9 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import app from "../../firebase/firebase.config";
+
 import axios from "axios";
+import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 
@@ -58,7 +59,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("current user", currentUser);
-      // post jwt 
+      // post jwt
       if (currentUser) {
         axios
           .post("https://yoga-meditation-server-ruby.vercel.app/jwt", {

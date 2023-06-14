@@ -2,7 +2,7 @@
 
 ## My web site purpose of :
 
-i will create routes and many component .. admin route , instructor route, user route
+## i will create routes and many component .. admin route , instructor route, user route
 
 ## Installation
 
@@ -35,6 +35,6 @@ Jhanker mahbub bai and all his teammates
 
 Jamalpur,Bangladesh;
 
-# My Client Site Link live link
+# My Client Site  live Link
 
 - []
