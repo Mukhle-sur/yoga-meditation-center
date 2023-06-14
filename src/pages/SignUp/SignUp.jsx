@@ -58,7 +58,7 @@ const SignUp = () => {
                 role: "Student",
                 image: imageUrl,
               };
-              fetch("http://localhost:5000/users", {
+              fetch("https://yoga-meditation-server-ruby.vercel.app/users", {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",

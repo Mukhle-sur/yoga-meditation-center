@@ -12,7 +12,7 @@ const Payment = () => {
   const [payment, setPayment] = useState({});
   console.log("payment", payment);
   useEffect(() => {
-    fetch(`http://localhost:5000/singleClass/${id}`)
+    fetch(`https://yoga-meditation-server-ruby.vercel.app/singleClass/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setPayment(data);

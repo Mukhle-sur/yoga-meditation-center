@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../useAuth/useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://yoga-meditation-server-ruby.vercel.app",
 });
 
 const useAxiosSecure = () => {

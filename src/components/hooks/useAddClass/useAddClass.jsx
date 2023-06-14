@@ -9,7 +9,7 @@ const useAddClass = () => {
     queryKey: ["addClass", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/studentAddClasses?email=${user?.email}`
+        `https://yoga-meditation-server-ruby.vercel.app/studentAddClasses?email=${user?.email}`
       );
       return res.json();
     },

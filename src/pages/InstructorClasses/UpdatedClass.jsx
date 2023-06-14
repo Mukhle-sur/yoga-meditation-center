@@ -12,7 +12,7 @@ const UpdatedClass = () => {
     const availableSeat = form.seat.value;
     const price = form.price.value;
     const updateClass = { className, availableSeat, price };
-    fetch(`http://localhost:5000/updateClass/${id}`, {
+    fetch(`https://yoga-meditation-server-ruby.vercel.app/updateClass/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

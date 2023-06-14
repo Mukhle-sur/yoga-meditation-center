@@ -9,7 +9,7 @@ const PopularInstructor = () => {
   const [popularInstructor, setPopularInstructor] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/showPopularInstructor")
+    fetch("https://yoga-meditation-server-ruby.vercel.app/showPopularInstructor")
       .then((res) => res.json())
       .then((data) => {
         setPopularInstructor(data);

@@ -32,7 +32,7 @@ const ApprovedClassCard = ({ approvedClass }) => {
       instructorEmail,
     };
     if (user) {
-      fetch("http://localhost:5000/studentAddClasses", {
+      fetch("https://yoga-meditation-server-ruby.vercel.app/studentAddClasses", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -53,7 +53,7 @@ const ApprovedClassCard = ({ approvedClass }) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users-findUser/${user?.email}`)
+    fetch(`https://yoga-meditation-server-ruby.vercel.app/users-findUser/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setFindUser(data);

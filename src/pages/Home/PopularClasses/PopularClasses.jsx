@@ -5,7 +5,7 @@ import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 const PopularClasses = () => {
   const [popularClasses, setPopularClasses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/showPopularClasses")
+    fetch("https://yoga-meditation-server-ruby.vercel.app/showPopularClasses")
       .then((res) => res.json())
       .then((data) => {
         setPopularClasses(data);
